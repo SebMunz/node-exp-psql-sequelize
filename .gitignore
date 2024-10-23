@@ -1,0 +1,21 @@
+# desafio_m7/.gitignore
+
+node_modules/
+.npmrc
+.npm-ignore
+.env
+.env.*
+.log
+npm-debug.log*
+/dist
+/build
+/coverage
+.vscode/
+.idea/
+.atom/
+.sublime-text
+*.tmp
+*.log
+*.bak
+
+!package.json
