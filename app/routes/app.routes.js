@@ -18,4 +18,7 @@ router.post('/bootcamps', bootcampController.createBootcamp);
 router.get('/bootcamps', bootcampController.findAll);
 router.get('/bootcamps/:id', bootcampController.findById);
 
+//Ruta para asignación
+router.post('/users/:userId/bootcamps/:bootcampId', userController.addBootcampToUser);
+
 module.exports = router;

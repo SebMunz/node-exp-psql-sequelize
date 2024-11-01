@@ -2,6 +2,7 @@
 "use strict"
 const db = require('../models');
 const Users = db.Users;
+const Bootcamps = db.Bootcamps; // para la asociación
 
 //Crear nuevo Usuario
 exports.createUser = async(req,res) => {
@@ -64,5 +65,24 @@ exports.deleteUserById = async(req,res) => {
         }
     } catch (error){
         res.status(500).json({message: 'Error al eliminar el usuario: ', error: error.message});
+    }
+};
+
+// Asignar usuario a bootcamp
+exports.addBootcampToUser = async (req, res) => {
+    try {
+        const { userId, bootcampId } = req.params;
+        const user = await Users.findByPk(userId);
+        const bootcamp = await Bootcamps.findByPk(bootcampId);
+
+        //si no hay usuario y/o no hay bootcamp: 404
+        if (!user || !bootcamp) {
+            return res.status(404).json({ message: 'Usuario o Bootcamp no encontrado' });
+        }
+
+        await user.addBootcamp(bootcamp);
+        res.status(200).json({ message: `Bootcamp agregado al usuario ${userId}` });
+    } catch (error) {
+        res.status(500).json({ message: 'Error al asociar bootcamp con usuario', error: error.message });
     }
 };

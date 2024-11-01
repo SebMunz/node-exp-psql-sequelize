@@ -59,9 +59,31 @@ Requisitos:
 
     <img src="./assets/08.png" alt="Estructura carpetas">
 
-6. Estructura final según instrucciones:
+## Datos requeridos.
+Se hará su inserción a través de Postman.
 
+Usuarios:
+- Mateo Diaz, mateo.diaz@correo.com
+  - Introducción a React
+  - Desarrollo web fullstack
+  - Big data, IA & ML
+- Santiago Mejías, santiago.mejias@correo.com
+  - Introducción a React
+  - Big data, IA & ML
+- Lucas Rojas, lucas.rojas@correo.com
+  - Big data, IA & ML
+- Facundo Fernandez, facundo.fernandez@correo.com
 
+Bootcamps:
+- Introducción a React, cue 10, "React es la librería más usada en JavaScript para el desarrollo de interfaces"
+- Desarrollo web Fullstack, cue 12, "Crearás aplicaciones web utilizando las tecnologías y lenguajes más actuales y populares, como: JavaScript, nodeJS, Angular, MongoDB, ExpressJS"
+- Big Data, IA & ML, cue 18, "Domina Data Science, y todo el ecosistema de lenguajes y herramientas de Big Data, e intégralos con modelos avanzados de Artificial Intelligence y Machine Learning".
+
+Lo primero es crear los bootcamps, luego los usuarios y finalmente asignarlos.
+<img src="assets/09.png">
+<img src="assets/10.png">
+Y finalmente hacemos un GET de users para ver todas las asignaciones:
+<img src="assets/11.png">
 
 ---
 ### Log de errores:
@@ -88,3 +110,6 @@ Requisitos:
   - Sucede que seguía leyendo `lastname`, así que en `server.js`, línea 18, cambié la sincronización `({force: true})`, relanzar, probar (funcionó) y volverlo a `({force: false})`
     - Con esto forzamos a volver a crear las relaciones y las tablas.
 
+- Imposible insertar dos de los bootcamps porque cues tienen límite de 10 y eran más altos. Se ajustó el límite superior a 20 y se repitió el proceso anterior de forzar sinc.
+- Para realizar la asignación de usuarios a bootcamps, a través de API, se debe crear una ruta y un método para ello. Con ello podemos asignar un usuario a un bootcamp a través de ID. Fue tremendo dolor de cabeza la verdad porque me olvidé importar los bootcamps al user controller.
+  - Ya con esto creado, usamos POST y enviamos `http://localhost:3000/api/users/1/bootcamps/1`, donde 1 es la ID de usuario y la ID de bootcamp. En este caso estamos asignando bootcamp 1 (Introducción a React) al usuario 1 (Mateo Diaz).
